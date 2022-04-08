@@ -6,7 +6,8 @@ source = {
 description = {
    summary = "converts the first letter a-z of each word to uppercase.",
    homepage = "https://github.com/mah0x211/lua-string-capitalize",
-   license = "MIT"
+   license = "MIT",
+   maintainer = "Masatoshi Fukunaga",
 }
 dependencies = {
     "lua >= 5.1",
