@@ -19,6 +19,9 @@ all: $(SOBJ)
 install: $(SOBJ)
 	$(INSTALL) -d $(INST_LIBDIR)
 	$(INSTALL) $(SOBJ) $(INST_LIBDIR)
+	$(INSTALL) src/lua_string_capitalize.h $(CONFDIR)
+	rm -f $(LUA_INCDIR)/lua_string_capitalize.h
+	ln -s $(CONFDIR)/lua_string_capitalize.h $(LUA_INCDIR)
 	rm -f ./src/*.o
 	rm -f ./src/*.so
 
