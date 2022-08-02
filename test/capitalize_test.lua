@@ -13,8 +13,40 @@ local function test_capitalize()
             exp = 'Hello_world',
         },
         {
+            arg = 'hello©example',
+            exp = 'Hello©Example',
+        },
+        {
+            arg = 'helloࠀexample',
+            exp = 'HelloࠀExample',
+        },
+        {
+            arg = 'hello퀀example',
+            exp = 'Hello퀀Example',
+        },
+        {
+            arg = 'hello豈example',
+            exp = 'Hello豈Example',
+        },
+        {
+            arg = 'hello𐂂example',
+            exp = 'Hello𐂂Example',
+        },
+        {
             arg = ' () _ hello | world  _foo Bar',
             exp = ' () _ Hello | World  _foo Bar',
+        },
+        {
+            arg = "foo'bar",
+            exp = "Foo'bar",
+        },
+        {
+            arg = "'foo'bar 'baz b'aa''qux'quux''_hello",
+            exp = "'Foo'bar 'Baz B'aa''Qux'quux''_hello",
+        },
+        {
+            arg = 'ハローworld',
+            exp = 'ハローWorld',
         },
     }) do
         local s = capitalize(v.arg)

@@ -12,6 +12,8 @@ converts the first letter `a-z` of each word to uppercase.
 luarocks install string-capitalize
 ```
 
+this module install the `lua_string_capitalize.h` to `CONFDIR` and creates a symbolic link in `LUA_INCDIR`.
+
 
 ---
 
@@ -37,4 +39,15 @@ converts the first letter `a-z` of each word to uppercase.
 **Returns**
 
 - `s:string`: capitalized string.
+
+
+## Use from C module
+
+the `string-capitalize` module installs `lua_string_capitalize.h` in the lua include directory.
+
+the following APIs are helper functions to use `string-capitalize` module in C module.
+
+### void lua_string_capitalize( lua_State *L, const char *str )
+
+push a string to `*L` with the first letter of each word in `*str` capitalized.
 

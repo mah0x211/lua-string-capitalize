@@ -25,5 +25,7 @@ build = {
     install_variables = {
         LIB_EXTENSION   = "$(LIB_EXTENSION)",
         INST_LIBDIR     = "$(LIBDIR)/string/",
+        CONFDIR         = '$(CONFDIR)',
+        LUA_INCDIR      = '$(LUA_INCDIR)',
     }
 }

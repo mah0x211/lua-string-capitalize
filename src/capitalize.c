@@ -20,49 +20,16 @@
  *  IN THE SOFTWARE.
  */
 
-#include <ctype.h>
-#include <lauxlib.h>
-#include <lua.h>
+#include "lua_string_capitalize.h"
 
 static int capitalize_lua(lua_State *L)
 {
-    size_t len    = 0;
-    char *s       = NULL;
-    size_t i      = 0;
-    luaL_Buffer b = {0};
+    const char *s = NULL;
 
     luaL_checktype(L, 1, LUA_TSTRING);
-    s = (char *)lua_tolstring(L, 1, &len);
+    s = lua_tostring(L, 1);
     lua_settop(L, 1);
-    // create copy
-    luaL_buffinit(L, &b);
-
-CHECK_LOWER:
-    if (islower(s[i])) {
-        // convert to uppercase
-        luaL_addchar(&b, s[i] - 0x20);
-    } else {
-        luaL_addchar(&b, s[i]);
-    }
-
-SKIP_LETTER:
-    // skip letter and '_'
-    while (++i < len && (s[i] == '_' || isalnum(s[i]))) {
-        luaL_addchar(&b, s[i]);
-    }
-
-    // skip non-letter
-    for (; i < len; i++) {
-        if (s[i] == '_') {
-            luaL_addchar(&b, s[i]);
-            goto SKIP_LETTER;
-        } else if (isalnum(s[i])) {
-            goto CHECK_LOWER;
-        }
-        luaL_addchar(&b, s[i]);
-    }
-
-    luaL_pushresult(&b);
+    lua_string_capitalize(L, s);
 
     return 1;
 }
